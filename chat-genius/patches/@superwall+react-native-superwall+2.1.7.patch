@@ -1,0 +1,52 @@
+diff --git a/node_modules/@superwall/react-native-superwall/ios/Json/ProductStore+Json.swift b/node_modules/@superwall/react-native-superwall/ios/Json/ProductStore+Json.swift
+index 5681b08..f51faec 100644
+--- a/node_modules/@superwall/react-native-superwall/ios/Json/ProductStore+Json.swift
++++ b/node_modules/@superwall/react-native-superwall/ios/Json/ProductStore+Json.swift
+@@ -5,6 +5,8 @@ extension ProductStore {
+     switch self {
+     case .appStore:
+       return "APP_STORE"
++      default:
++        return "OTHER"
+     }
+   }
+ }
+diff --git a/node_modules/@superwall/react-native-superwall/ios/Json/RedemptionResult+Json.swift b/node_modules/@superwall/react-native-superwall/ios/Json/RedemptionResult+Json.swift
+index b2dd0b6..7bc1e72 100644
+--- a/node_modules/@superwall/react-native-superwall/ios/Json/RedemptionResult+Json.swift
++++ b/node_modules/@superwall/react-native-superwall/ios/Json/RedemptionResult+Json.swift
+@@ -117,6 +117,8 @@ extension RedemptionResult.RedemptionInfo.PurchaserInfo.StoreIdentifiers {
+       for (key, value) in additionalInfo {
+         map[key] = value
+       }
++      default:
++        break
+     }
+ 
+     return map
+diff --git a/node_modules/@superwall/react-native-superwall/ios/Json/SuperwallPlacementInfo+Json.swift b/node_modules/@superwall/react-native-superwall/ios/Json/SuperwallPlacementInfo+Json.swift
+index e33e253..5af3e29 100644
+--- a/node_modules/@superwall/react-native-superwall/ios/Json/SuperwallPlacementInfo+Json.swift
++++ b/node_modules/@superwall/react-native-superwall/ios/Json/SuperwallPlacementInfo+Json.swift
+@@ -214,6 +214,8 @@ extension SuperwallEvent {
+       return ["event": "enrichmentFail"]
+     case .networkDecodingFail:
+       return ["event": "networkDecodingFail"]
++      default:
++        return ["event": "unknown"]
+     }
+   }
+ }
+diff --git a/node_modules/@superwall/react-native-superwall/superwall-react-native.podspec b/node_modules/@superwall/react-native-superwall/superwall-react-native.podspec
+index d333254..212cb62 100644
+--- a/node_modules/@superwall/react-native-superwall/superwall-react-native.podspec
++++ b/node_modules/@superwall/react-native-superwall/superwall-react-native.podspec
+@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
+   s.source       = { :git => "https://github.com/superwall/Superwall-React-Native.git", :tag => "#{s.version}" }
+ 
+   s.source_files = "ios/**/*.{h,m,mm,swift}"
+-  s.dependency "SuperwallKit", '4.5.0'
++  s.dependency "SuperwallKit", '4.17.0'
+ 
+   # Use install_modules_dependencies helper to install the dependencies if React Native version >=0.71.0.
+   # See https://github.com/facebook/react-native/blob/febf6b7f33fdb4904669f99d795eba4c0f95d7bf/scripts/cocoapods/new_architecture.rb#L79.
